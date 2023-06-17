@@ -14,7 +14,6 @@
 
 package com.google.search.robotstxt;
 
-import com.google.common.flogger.FluentLogger;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -22,7 +21,6 @@ import java.util.stream.Stream;
 
 /** Robots.txt parser implementation. */
 public class RobotsParser extends Parser {
-  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private final int valueMaxLengthBytes;
 
   public RobotsParser(final ParseHandler parseHandler) {
@@ -77,7 +75,7 @@ public class RobotsParser extends Parser {
             Stream.of("dissallow", "dissalow", "disalow", "diasllow", "disallaw")
                 .anyMatch(s -> key.compareToIgnoreCase(s) == 0);
         if (disallowTypoDetected) {
-          logger.atInfo().log("Fixed typo: \"%s\" -> \"%s\"", key, "disallow");
+          //logger.atInfo().log("Fixed typo: \"%s\" -> \"%s\"", key, "disallow");
           return DirectiveType.DISALLOW;
         }
 
@@ -93,11 +91,11 @@ public class RobotsParser extends Parser {
       final int lineBegin,
       final int lineEnd,
       final int lineNumber) {
-    logger.at(level).log(
+    /*logger.at(level).log(
         "%s%nAt line %d:%n%s\t",
         message,
         lineNumber,
-        new String(Arrays.copyOfRange(robotsTxtBodyBytes, lineBegin, lineEnd)));
+        new String(Arrays.copyOfRange(robotsTxtBodyBytes, lineBegin, lineEnd)));*/
   }
 
   /**
